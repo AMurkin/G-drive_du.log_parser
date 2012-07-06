@@ -1,0 +1,129 @@
+11.03.2012 15:45:34 
+[D:\TEMP] 
+Files:        21868
+Directories:  2372
+Size:         48956817992 bytes
+Size on disk: 48956817992 bytes
+
+[D:\dir2] 
+Files:        5074
+Directories:  173
+Size:         38189545092 bytes
+Size on disk: 38189545092 bytes
+
+13.03.2012 10:11:53 
+[D:\TEMP] 
+Files:        21954
+Directories:  2382
+Size:         49025300086 bytes
+Size on disk: 49025300086 bytes
+
+[D:\dir2] 
+Files:        5083
+Directories:  173
+Size:         38189940935 bytes
+Size on disk: 38189940935 bytes
+
+19.03.2012  8:43:07 
+[D:\TEMP] 
+Files:        22099
+Directories:  2401
+Size:         49124943254 bytes
+Size on disk: 49124943254 bytes
+
+[D:\dir2] 
+Files:        4617
+Directories:  162
+Size:         19474214961 bytes
+Size on disk: 19474214961 bytes
+
+22.03.2012  8:38:32 
+[D:\TEMP] 
+Files:        22119
+Directories:  2409
+Size:         49316071363 bytes
+Size on disk: 49316071363 bytes
+
+[D:\dir2] 
+Files:        4628
+Directories:  162
+Size:         19522746727 bytes
+Size on disk: 19522746727 bytes
+
+23.03.2012 15:12:04 
+[D:\TEMP] 
+Files:        22140
+Directories:  2411
+Size:         49331523896 bytes
+Size on disk: 49331523896 bytes
+
+[D:\dir2] 
+Files:        4628
+Directories:  162
+Size:         19522316913 bytes
+Size on disk: 19522316913 bytes
+
+28.03.2012  8:54:06 
+[D:\TEMP] 
+Files:        22407
+Directories:  2430
+Size:         49896162611 bytes
+Size on disk: 49896162611 bytes
+
+[D:\dir2] 
+Files:        4628
+Directories:  162
+Size:         19523669915 bytes
+Size on disk: 19523669915 bytes
+05.04.2012 13:22:49 
+[D:\TEMP] 
+Files:        22791
+Directories:  2470
+Size:         50800830813 bytes
+Size on disk: 50800830813 bytes
+
+[D:\dir2] 
+Files:        4642
+Directories:  163
+Size:         19525664050 bytes
+Size on disk: 19525664050 bytes
+
+11.05.2012 11:44:25 
+[D:\TEMP] 
+Files:        23676
+Directories:  2590
+Size:         50778271463 bytes
+Size on disk: 50778271463 bytes
+
+[D:\dir2] 
+Files:        4682
+Directories:  163
+Size:         19745182991 bytes
+Size on disk: 19745182991 bytes
+
+09.06.2012  8:51:35 
+[D:\TEMP] 
+Files:        24192
+Directories:  2669
+Size:         51275060371 bytes
+Size on disk: 51275060371 bytes
+
+[D:\dir2] 
+Files:        4650
+Directories:  163
+Size:         8700681350 bytes
+Size on disk: 8700681350 bytes
+
+03.07.2012 13:24:30 
+[D:\TEMP] 
+Files:        23443
+Directories:  2635
+Size:         49974587484 bytes
+Size on disk: 49974587484 bytes
+
+[D:\dir2] 
+Files:        4672
+Directories:  163
+Size:         8702879205 bytes
+Size on disk: 8702879205 bytes
+

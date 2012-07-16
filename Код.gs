@@ -7,6 +7,9 @@
 //  time in rows
 //  fields in columns
 //  values at cells
+
+// TODO: insert rows with time at all datasheets (sync in graph)
+// TODO: remove ' from time at the end of proc
 function importFromTextLog() {
   var fileName = "du.txt"; //Browser.inputBox("Enter the name of the file in your Docs List to import:");
   var files = DocsList.getFiles();
@@ -37,6 +40,59 @@ function importFromTextLog() {
   //var Directory = "";
   var expect = "T"; // T | D | F
   regexpEmpty = /^\s+$/;
+  
+  //////////////////////////////////////////////////////////
+  // isDirStr //
+  var isDirStr = function(str)
+  {
+    regexp = /^\[/; return regexp.test(str);
+  };
+  // isTimeStr //
+  var isTimeStr = function(str) {
+    regexp = /^\d/; return regexp.test(str);
+  };
+  // isFieldStr //
+  var isFieldStr = function(str) {
+    regexp = /^[\w\s]+:.+/; return regexp.test(str);
+  };
+  // GetOrCreateSheet //
+  var GetOrCreateSheet = function(str, spreadsheet) {
+    var st = spreadsheet.getSheetByName(str);
+    if (st == null) var st = spreadsheet.insertSheet(str, spreadsheet.getSheets().length);
+    return st;
+  };
+  // writeDataField //
+  var writeDataField = function(KeyValueStr, strRowLabel, sheetRef) {
+    var FieldName = KeyValueStr.split(":")[0].replace(/\s*(\S*\s*\S+)\s*/, '$1'); // convert to one regex
+    var FieldValue = KeyValueStr.split(":")[1].replace('bytes','').replace(/\s*(\S*\s*\S+)\s*/, '$1');
+    
+    var dataR = sheetRef.getDataRange();
+    var Ncolumns = dataR.getWidth()-1;
+    var FieldColumn = 0;
+    if (Ncolumns != 0 ) {
+      var DirFieldsR = sheetRef.getRange(1, 2, 1, Ncolumns);
+      var DirFieldsNames = DirFieldsR.getValues()[0];
+      for (var j = 0; j < Ncolumns; j++) {
+        if (FieldName == DirFieldsNames[j].valueOf()) {
+          FieldColumn = j+1;
+          break;
+        }
+      };
+    }
+    if (FieldColumn == 0) {
+      sheetRef.getRange(1, Ncolumns+1+1, 1, 1).setValue(FieldName);
+      Ncolumns += 1;
+      FieldColumn = Ncolumns;
+    };
+    var NewOrLast = 0;
+    var strLastRowLabel = "'" + sheetRef.getRange(dataR.getLastRow(), 1, 1, 1).getValue();
+    if (strLastRowLabel != strRowLabel) {
+      NewOrLast = 1;
+      sheetRef.getRange(dataR.getLastRow()+NewOrLast, 1, 1, 1).setValue(strRowLabel);
+    }
+    sheetRef.getRange(dataR.getLastRow()+NewOrLast, FieldColumn+1, 1, 1).setValue(FieldValue);
+  };
+  //////////////////////////////////////////////////////////
   
   for (var i = 0; i < FileContentStrings.length; i++) {
     str = FileContentStrings[i].replace(/\s*(\S*\s*\S+)\s*/, '$1');
@@ -89,59 +145,7 @@ function importFromTextLog() {
   }
   
 };
-
-function isDirStr(str) {
-  regexp = /^\[/;
-  return regexp.test(str);
-};
-
-function isTimeStr(str) {
-  regexp = /^\d/;
-  return regexp.test(str);
-};
-
-function isFieldStr(str) {
-  regexp = /^[\w\s]+:.+/;
-  return regexp.test(str);
-};
-
-function writeDataField(KeyValueStr, strRowLabel, sheetRef) {
-  var FieldName = KeyValueStr.split(":")[0].replace(/\s*(\S*\s*\S+)\s*/, '$1'); // convert to one regex
-  var FieldValue = KeyValueStr.split(":")[1].replace('bytes','').replace(/\s*(\S*\s*\S+)\s*/, '$1');
   
-  var dataR = sheetRef.getDataRange();
-  var Ncolumns = dataR.getWidth()-1;
-  var FieldColumn = 0;
-  if (Ncolumns != 0 ) {
-    var DirFieldsR = sheetRef.getRange(1, 2, 1, Ncolumns);
-    var DirFieldsNames = DirFieldsR.getValues()[0];
-    for (var j = 0; j < Ncolumns; j++) {
-      if (FieldName == DirFieldsNames[j].valueOf()) {
-        FieldColumn = j+1;
-        break;
-      }
-    };
-  }
-  if (FieldColumn == 0) {
-    sheetRef.getRange(1, Ncolumns+1+1, 1, 1).setValue(FieldName);
-    Ncolumns += 1;
-    FieldColumn = Ncolumns;
-  };
-  var NewOrLast = 0;
-  var strLastRowLabel = "'" + sheetRef.getRange(dataR.getLastRow(), 1, 1, 1).getValue();
-  if (strLastRowLabel != strRowLabel) {
-    NewOrLast = 1;
-    sheetRef.getRange(dataR.getLastRow()+NewOrLast, 1, 1, 1).setValue(strRowLabel);
-  }
-  sheetRef.getRange(dataR.getLastRow()+NewOrLast, FieldColumn+1, 1, 1).setValue(FieldValue);
-};
-  
-function GetOrCreateSheet(str, spreadsheet) {
-  var st = spreadsheet.getSheetByName(str);
-  if (st == null) var st = spreadsheet.insertSheet(str, spreadsheet.getSheets().length);
-  return st;
-};
-
 function onOpen() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   
